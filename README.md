@@ -18,6 +18,11 @@ This application is published as an unmanaged package at: https://login.salesfor
   * Choose the access level you want end users to have and then click ‘Next’ for Step 2. Choose security level (Grant access to all is recommended for a personal DE test environment)
   * Click ‘Install’ for Step 3. Install Package
 
+#Use
+Once installed you can go to the following URL: https://\<your salesforce instance\>/apex/MobileSample_ngIndex
+
+Example: https://eu2.salesforce.com/apex/MobileSample_ngIndex
+
 #Develop
 At some point, you may want to modify the application.
 
