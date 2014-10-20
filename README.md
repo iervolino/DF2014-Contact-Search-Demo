@@ -90,7 +90,7 @@ REST API).
   * VF Pages are the HTML part (view part of angular)
   * app.js is the 'controller' part. Each HTML file has a corresponding javascript function/controller in app.js
 
-#What the heck with these Visual Force page?
+#What the heck with these Visual Force pages?
 
 The only reason for having these apex pages is to avoid hosting html/js/css in yet another
 hosting environment.
@@ -110,6 +110,8 @@ these statement with relative URL.
 * Original Mobile pack: https://github.com/developerforce/MobilePack-AngularJS 
 * SOSL and SOQL Reference Guide: http://www.salesforce.com/us/developer/docs/soql_sosl/
 * REST API Developer’s Guide: http://www.salesforce.com/us/developer/docs/api_rest/api_rest.pdf 
+
+To build this demo, we have used: [AngularJS](https://angularjs.org/), [JQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com/2.3.2/), [Gizmo fonts](https://symbolset.com/icons/gizmo)
 
 #Authors
 * Marc Brette
