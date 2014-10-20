@@ -1,0 +1,61 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+    <div class="container-fluid">
+        <div ng-show="isWorking()">
+            <p>Working</p>
+        </div>
+        <script>
+            $("#header").html("Contact Demo");
+        </script>
+
+        <div ng-show="!isWorking()">
+            <header class="form-group navbar-dark">
+                <nav class="flag">
+                    <div class="phm flag__image">
+                        <img width="20" src="{!URLFOR($Resource.vendor_zip, 'images/icons/rows.png')}" />
+                    </div>
+                    
+                    <div class="phm flag__body">
+                    <a href="#contacts" class="plain-anchor">
+                        <div class="searchInput bg-searchInput tac">
+                            <span class="mrs ss-search text-white"></span>
+                            <span class="text-white">Search</span>
+                        </div>
+                      </a>
+                    </div>
+                    
+                    <div class="phm flag__image">
+                        <img width="20" src="{!URLFOR($Resource.vendor_zip, 'images/icons/add.png')}" />
+                    </div>
+               </nav>
+           </header>
+           <article class="bg-gray ht-full">
+               <section class="phl ptm mbl bg-white">
+                   <h1 class="man f4 caps">Today</h1>
+                   <ul class="pan list-plain list-horz">
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/KenZimmerman.jpg')}" /><p>Ken<br/>Zimmerman</p></li>
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/RitaCampbell.png')}" /><p>Rita<br/>Campbell</p></li>
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/BradCauder.png')}" /><p>Brad<br/>Cauder</p></li>
+                   </ul>
+               </section>
+               <section class="pal mbl bg-white">
+                   <h1 class="man f4 caps">Nearby</h1>
+                   <div>
+                       <img src="{!URLFOR($Resource.vendor_zip, 'images/people/googleMap.png')}" alt="google map" class="img" />
+                   </div>
+               </section>
+               <section class="pal mbl bg-white">
+                   <h1 class="man f4 caps">Recently Viewed</h1>
+                   <ul class="pan list-plain list-horz">
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/WesMontgomery.png')}" /><p>Wes<br/>Montgomery</p></li>
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/StanGetz.png')}" /><p>Stan<br/>Getz</p></li>
+                       <li class="mrm tac"><img width="100" src="{!URLFOR($Resource.vendor_zip, 'images/squares/JohnColtrane.png')}" /><p>John<br/>Coltrane</p></li>
+                   </ul>
+               </section>
+               <section class="phl ptm mbl bg-white clear">
+                   <p class="fl pan">All Contacts</p>
+                   <p class="fr"><span class="f3 ss-navigateright"></span></p>
+               </section>
+           </article>
+        </div>
+    </div>
+</apex:page>

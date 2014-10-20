@@ -1,0 +1,473 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="{!URLFOR($Resource.vendor_zip, 'css/ssGizmo.css')}"/>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+
+<!-- Inline custom style, easier to modify when this is hosted as a VF page -->
+<style>
+body {
+    font-size: 16px;
+    font-family: 'Helvetica Light', sans-serif;
+    padding-top: 0px; /* 60px to make the container go all the way to the bottom of the topbar */
+    color: #2A426C;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+
+.ngView {
+    padding: 0px;
+}
+
+.button {
+    text-align: center;
+}
+
+.form-group {
+    padding: 10px;
+    margin: 0;
+}
+
+.form-group .glyphicon {
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    z-index: 3;
+}
+
+.full-search-icon {
+    padding-right: 10px;
+}
+
+.panel-heading {
+    background-color: ghostwhite;
+}
+
+.detail-header {
+    color: white;
+    background-image: url('{!URLFOR($Resource.vendor_zip, 'images/people/contact_detail_background.jpg')}');
+    height: 332px;
+    padding-top: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 2px;
+}
+
+.detail-title {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.detail-value {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.detail-value .glyphicon {
+    float: right;
+    padding: 0px 5px 10px 0px;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.f1 {
+    font-size: 27px;
+}
+
+.f2 {
+    font-size: 24px;
+}
+
+.f4 {
+    font-size: 15px;
+}
+
+.f5 {
+    font-size: 13px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.font-reg {
+    font-family: 'Helvetica', sans-serif;
+}
+
+.fw-semibold {
+    font-weight: 500;
+}
+
+.caps {
+    text-transform: uppercase;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+.pos-abs {
+    position: absolute;
+    width: 100%;
+}
+
+.bottom {
+    bottom: 2px;
+}
+
+.tac {
+    text-align: center;
+}
+
+.tar {
+    text-align: right;
+}
+
+.list-plain li {
+    list-style-type: none;
+}
+
+.list-horz li {
+    display: inline-block;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.wi-half {
+    width: 50%;
+}
+
+.ht-full {
+    height: 100%;
+}
+
+.navbar-dark {
+    background-color: #343948;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.text-white {
+    color: white;
+}
+
+.bg-gray {
+    background-color: #F4F5F7;
+}
+
+.bg-searchInput {
+    background-color: #20232D;
+}
+
+.searchInput {
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 1.4;
+    display: block;
+    position: relative;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+.cancel-button {
+    border: 0;
+    background: none;
+    color: white;
+    height: 34px;
+}
+
+.plain-anchor {
+    text-decoration: none;
+    color: inherit;
+}
+
+.plain-anchor:hover {
+    text-decoration: none;
+}
+
+.searchResultsPadding {
+    padding-top: 0;
+    padding-bottom: 12px;
+}
+
+.pan {
+    padding: 0;
+}
+
+.pam {
+    padding: 12px !important;
+}
+
+.pal {
+    padding: 20px !important;
+}
+
+.phl {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.pvs {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.pvm {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.ptm {
+    padding-top: 12px !important;
+}
+
+.pbm {
+    padding-bottom: 12px !important;
+}
+
+.phm {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+.prm {
+    padding-right: 12px;
+}
+
+.pbs {
+    padding-bottom: 10px !important;
+}
+
+.ptl {
+    padding-top: 20px !important;
+}
+
+.man {
+    margin: 0;
+}
+
+.mam {
+    margin: 12px !important;
+}
+
+.mrs {
+    margin-right: 10px;
+}
+
+.mrm {
+    margin-right: 12px;
+}
+
+.mrl {
+    margin-right: 20px !important;
+}
+
+.mvm {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.mhm {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+}
+
+.mbl {
+    margin-bottom: 20px;
+}
+
+.active-border {
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom: 4px solid #FF6F00;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #D3D8E1;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.img {
+    max-width: 100%;
+}
+
+.img-circle {
+    border-radius: 100%;
+}
+
+.flag {
+    display: table;
+    width: 100%;
+}
+
+.flag__image,
+.flag__body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.flag__body {
+    width: 100%;
+}
+
+.clear:before,
+.clear:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clear:after {
+    clear: both;
+}
+
+.clear {
+    *zoom: 1;
+}
+
+/* Put your css in here */
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.view-animate-container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ease {
+    transition: all 0.2s ease;
+}
+
+.fadeIn .view-animate.ng-enter {
+    opacity: 0;
+}
+
+.fadeIn .view-animate.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.fadeIn .view-animate.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+.rtl .view-animate.ng-enter {
+    -webkit-transform: translate3d(100%, 0, 0);
+}
+
+.rtl .view-animate.ng-enter.ng-enter-active {
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.rtl .view-animate.ng-leave.ng-leave-active {
+    -webkit-transform: translate3d(-100%, 0, 0);
+}
+
+.ltr .view-animate.ng-enter {
+    -webkit-transform: translate3d(-100%, 0, 0);
+}
+
+.ltr .view-animate.ng-enter.ng-enter-active {
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.ltr .view-animate.ng-leave.ng-leave-active {
+    -webkit-transform: translate3d(100%, 0, 0);
+}
+
+</style>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body ng-app="AngularSFDemo" ng-controller="LoginCtrl">
+<div class="view-animate-container" ng-class="direction">
+    <ng-view class="view-animate ease"></ng-view>
+</div>
+
+
+<script type="text/javascript">
+    //Get configuration from environment variables (via heroku or localhost env)
+    var configFromEnv = {};
+    configFromEnv.client_id = '<%= client_id %>';
+    var app_url = '{!URLFOR('/')}';
+    if(app_url.substr(-1) == '/') {
+        app_url = app_url.substr(0, app_url.length - 1);
+    }
+    configFromEnv.app_url = app_url;
+    configFromEnv.sessionId = "{!$API.session_Id}";
+    configFromEnv.imagesRoot = "{!URLFOR($Resource.images, 'images')}";
+    configFromEnv.loginUrl = 'https://login.salesforce.com/';
+</script>
+
+
+<script src="{!URLFOR($Resource.vendor_zip, 'js/jquery-2.0.0.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/underscore-1.4.4.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/angular.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/angular-animate.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/angular-resource.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/angular-route.min.js')}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/dropdownToggle.js')}"></script>
+
+
+<script src="{!URLFOR($Resource.forcetk_mobilesdk_js)}"></script>
+<script src="{!URLFOR($Resource.smartsync_js)}"></script>
+<script src="{!URLFOR($Resource.angular_force_js)}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/forcetk.ui.js')}"></script>
+
+<script src="{!URLFOR($Resource.init_js)}"></script>
+<script src="{!URLFOR($Resource.app_js)}"></script>
+<script src="{!URLFOR($Resource.vendor_zip, 'js/lru.js')}"></script>
+
+</body>
+</apex:page>

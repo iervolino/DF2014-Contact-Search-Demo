@@ -1,0 +1,21 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+
+<div class="container">
+    <div class="span4 well">
+        <p style='text-align: center;padding-bottom: 0px;'>
+            <button class="btn btn-large btn-primary" ng-click="viewContacts()">
+                View Contacts
+            </button>
+        </p>
+        <p>This is a Mobile Pack Demo. <a href="https://github.com/rajaraodv/SFAngularBootStrap">Learn more</a>.</p>
+
+        <p>Built with <a href="http://angularjs.org">AngularJS</a> and <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a>.
+        </p>
+
+    </div>
+</div>
+<script>
+    $("#header").html("Salesforce Demo");
+</script>
+
+</apex:page>

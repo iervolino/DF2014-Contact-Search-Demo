@@ -1,0 +1,55 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+
+    <div class="span4">
+        <div class="row">
+            <div class="span4 detail-header pos-rel">
+            <div>
+                <a href="#/contacts" class="plain-anchor"><span class="f2 ss-navigateleft"></span></a>
+            </div>
+            <div class="tac">
+                <img ng-if="hasPhoto(contact)" width="124" src="{!URLFOR($Resource.vendor_zip, 'images/people/{{contact.FirstName + contact.LastName}}.png')}" data-user-id="7688502" class="mam img-circle" />
+                <img ng-if="!hasPhoto(contact)" width="124" src="{!URLFOR($Resource.vendor_zip, 'images/icons/avatar.png')}"
+                                 data-user-id="7688502"
+                                 class="mam img-circle" />
+                <div class="f1 fullname">{{contact.FirstName}} {{contact.LastName}}</div>
+                <div class="f4">{{contact.Title}}, {{contact.Account.Name}}</div>
+                <div class="f5 ptl pbs clear pos-abs bottom">
+                    <div class="fl wi-half"><span class="pbs active-border">INFO</span></div>
+                    <div class="fr wi-half">ACTIVITY</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="phm">
+            <div class="row">
+                <div class="f5 span3 offset1 detail-title">Mobile</div>
+            </div>
+            <div class="flag border-bottom">
+                <div class="flag__image nowrap span3 offset1 detail-value">
+                    <a href="tel:{{contact.Phone}}" class="plain-anchor">{{contact.Phone}}</a>
+                </div> 
+                <div class="flag__body tar detail-value">
+                     <img width="30" src="{!URLFOR($Resource.vendor_zip, 'images/icons/Phone.png')}" class="glyphicon" />
+                    <img width="30" src="{!URLFOR($Resource.vendor_zip, 'images/icons/chat.png')}" class="mrl glyphicon" />
+                </div>
+            </div>
+        </div>
+
+        <div class="phm">
+         <div class="row">
+            <div class="f5 span3 offset1 detail-title">Email</div>
+        </div>
+        <div class="row border-bottom">
+            <div class="span3 offset1 detail-value">
+                <a href="mailto:{{contact.Email}}" class="plain-anchor">{{contact.Email}}</a>
+                <img width="30" src="{!URLFOR($Resource.vendor_zip, 'images/icons/email.png')}" class="glyphicon" />
+            </div>
+        </div>
+        </div>
+
+        <div class="phm row">
+            <div class="f5 span3 offset1 detail-title">Notes</div>
+        </div>
+    </div>
+
+</apex:page>

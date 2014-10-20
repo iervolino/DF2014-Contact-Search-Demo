@@ -1,0 +1,92 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+    <div class="container-fluid">
+        <div ng-show="isWorking()">
+            <p>Working</p>
+        </div>
+        <script>
+            $("#header").html("Contact Demo");
+        </script>
+
+        <!-- Same page deals with Recently viewed, Type-ahead, and Search results -->
+
+        <div ng-show="!isWorking()">
+            <div>
+                <div class="form-group navbar-dark">
+                    <div class="flag pos-rel">
+                        <div ng-show="showRegularSearch" class="prm flag__image">
+                            <a href="#/contactsHome" class="plain-anchor"><span class="f2 ss-navigateleft text-white"></span></a>
+                        </div>
+                        <div class="flag__body pos-rel">
+                            <input type="search" ng-model="searchTerm" ng-keyup="doSuggest(searchString)"
+                                   class="input-medium search-query form-control" placeholder="Search"/>
+                            <span ng-show="searchTerm" ng-click="eraseTerms()" class="glyphicon glyphicon-remove"></span>
+                        </div>
+                        <a ng-hide="showRegularSearch" href="#/contactsHome" class="plain-anchor"><button ng-click="goBack()" class="flag__image cancel-button" type="button">Cancel</button></a>
+                        
+                    </div>
+                </div>
+                <div ng-show="showTypeAhead" class="table"> <!--showTypeAhead-->
+                    <table class="table">
+                        <tr ng-click="doView(contact.Id)" ng-repeat="contact in contactsTypeAhead | limitTo:5">
+                            <td class="phm col-xs-12 col-md-8 no-border">
+
+                                <div class="searchResultsPadding border-bottom clear">
+                                    <div class="prm fl">
+                                        <a href="javascript:void(0)" class="plain-anchor fw-semibold fullname">{{contact.Name}}</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-click="doSearch(searchString)">
+                            <td class="phm no-border">
+                            <a href="javascript:void(0)" class="plain-anchor">
+                                <span class="full-search-icon glyphicon glyphicon-search"></span>{{searchTerm}}
+                            </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div ng-show="showRegularSearch" class="table"> 
+                    <table class="phm table">
+                        <tr ng-click="doView(contact.Id)" ng-repeat="contact in contactsTypeAhead">
+                            <td>
+                            <div class="flag">
+                                <div class="flag__image">
+                                    <img ng-if="hasPhoto(contact)" width="46" src="{!URLFOR($Resource.vendor_zip, 'images/people/{{contactName(contact)}}.png')}" data-user-id="7688502" class="mam" />
+                                    <img ng-if="!hasPhoto(contact)" width="46" src="{!URLFOR($Resource.vendor_zip, 'images/icons/avatar.png')}"
+                                         data-user-id="7688502"
+                                         class="mhm img-circle" />
+                                </div>
+                                <div class="flag__body">
+                                    <a href="javascript:void(0)" class="plain-anchor fw-semibold fullname">{{contact.Name}}</a>
+                                    <br/>
+                                    <small class="metadata">{{contact.Title}}, {{contact.Account.Name}}</small>
+                                </div>
+                            </div>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div ng-show="showMru">
+                    <table class="table">
+                        <tr class="row panel-heading">
+                            <td class="fs-12 fw-semibold">RECENT CONTACTS</td>
+                        </tr>
+                        <tr class="row" ng-click="doView(contact.Id)" ng-repeat="contact in contactsMru">
+                            <td class="phm col-xs-12 col-md-8 no-border">
+                                <div class="searchResultsPadding border-bottom clear">
+                                    <div class="prm fl">
+                                        <a href="javascript:void(0)" class="plain-anchor fw-semibold fullname">{{contact.Name}}</a>
+                                    </div>
+                                    <small class="metadata">{{contact.Account.Name}}</small>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:page>
