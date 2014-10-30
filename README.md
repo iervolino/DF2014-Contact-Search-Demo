@@ -6,6 +6,8 @@ It has been implemented as a fully-functional demo for our DreamForce 2014 prese
 
 It showcases several search API and how to integrate them into a fluid User Experience.
 
+Presentation is available at: http://dreamforce.vidyard.com/watch/79PwswE0n7pH6jDnJk26SQ
+
 #Install
 This application is published as an unmanaged package at: https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB000000010wZ
 
